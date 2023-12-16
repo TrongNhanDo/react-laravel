@@ -1,6 +1,6 @@
-import axios from 'axios';
 import { useCallback, useEffect, useState } from 'react';
 import './App.css';
+import { callApi } from './api/callApi';
 
 type UserProps = {
     id: number;
@@ -23,9 +23,12 @@ function App() {
     const [users, setUsers] = useState<UserProps[]>([]);
 
     const fetchApi = useCallback(async () => {
-        const response: ResponseProps = await axios
-            .get('http://localhost:8000/api/users')
-            .then((res) => res.data);
+        const response: ResponseProps = await callApi
+            .get('/users/')
+            .then((res) => {
+                console.log(res);
+                return res.data;
+            });
 
         if (response.bizResult === '0') {
             setUsers(response.users);
