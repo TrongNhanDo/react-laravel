@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
+import Pusher from 'pusher-js';
 import './App.css';
 import { callApi } from './api/callApi';
 
@@ -19,6 +20,10 @@ type ResponseProps = {
     bizResult: string;
 };
 
+type PusherProps = {
+    users: UserProps[];
+};
+
 function App() {
     const [users, setUsers] = useState<UserProps[]>([]);
 
@@ -26,7 +31,6 @@ function App() {
         const response: ResponseProps = await callApi
             .get('/users/')
             .then((res) => {
-                console.log(res);
                 return res.data;
             });
 
@@ -38,6 +42,20 @@ function App() {
     useEffect(() => {
         fetchApi();
     }, [fetchApi]);
+
+    useEffect(() => {
+        const pusherAppKey = import.meta.env.VITE_PUSHER_APP_KEY || '';
+        const pusherAppCluster = import.meta.env.VITE_PUSHER_APP_CLUSTER || '';
+        if (pusherAppKey && pusherAppCluster) {
+            const pusher = new Pusher(pusherAppKey, {
+                cluster: pusherAppCluster,
+            });
+            const channel = pusher.subscribe('my-channel');
+            channel.bind('my-event', (responsePusher: PusherProps) => {
+                setUsers(responsePusher.users);
+            });
+        }
+    }, []);
 
     return (
         <>
