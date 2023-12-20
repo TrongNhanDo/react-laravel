@@ -10,6 +10,26 @@
     padding: 20px;
 }
 
+.container .div-err {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    margin: auto;
+    margin-bottom: 20px;
+    padding: 2%;
+    border: 2px solid red;
+    color: red;
+    border-radius: 5px;
+}
+
+.container .div-err li {
+    margin-left: 25px;
+}
+
+.container .div-err li:not(:last-child) {
+    margin-bottom: 10px;
+}
+
 #customers {
     font-family: Arial, Helvetica, sans-serif;
     border-collapse: collapse;
@@ -79,4 +99,63 @@
 }
 #customers .td-button {
     width: 18%;
+}
+
+#fm-add {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    margin: auto;
+    margin-bottom: 20px;
+    padding: 2%;
+    border: 2px solid whitesmoke;
+    border-radius: 5px;
+}
+
+#fm-add .div-row {
+    display: flex;
+    width: 100%;
+}
+
+#fm-add .div-row div {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+#fm-add .div-row input,
+textarea {
+    font-size: 16px;
+    padding: 6px 15px;
+    margin: 5px 10px;
+    border-radius: 3px;
+    border-color: #ddd;
+}
+
+#fm-add .div-row label {
+    margin: 0px 10px;
+}
+
+#fm-add .row-button {
+    width: 100%;
+    display: fle;
+    justify-content: center;
+    align-items: center;
+}
+
+#fm-add .row-button button {
+    display: block;
+    padding: 6px 40px;
+    width: fit-content;
+    cursor: pointer;
+}
+
+#fm-add .div-error {
+    color: red;
+    margin: 0px 10px;
+}
+
+#fm-add .input-error {
+    background-color: yellow;
 }
