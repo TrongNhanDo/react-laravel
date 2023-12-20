@@ -1,0 +1,67 @@
+.container {
+    width: 60%;
+    margin: auto;
+}
+
+.container .header {
+    font-size: 25px;
+    font-weight: bold;
+    text-align: center;
+    padding: 20px;
+}
+
+#customers {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#customers td,
+#customers th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#customers tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+#customers th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-color: #04aa6d;
+    color: white;
+}
+
+#customers .td-button {
+    width: 18%;
+}
+
+#customers button {
+    display: block;
+    width: fit-content;
+    float: left;
+    padding: 7px 15px;
+    margin: 0px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+}
+
+#customers button:hover {
+    opacity: 0.8;
+}
+
+#customers .btn-detail {
+    background-color: blueviolet;
+}
+
+#customers .btn-delete {
+    background-color: red;
+}
+
+.container .txt-center {
+    text-align: center;
+}

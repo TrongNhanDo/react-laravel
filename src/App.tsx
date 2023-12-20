@@ -26,6 +26,7 @@ type PusherProps = {
 
 function App() {
     const [users, setUsers] = useState<UserProps[]>([]);
+    const [userDetail, setUserDetail] = useState<UserProps>();
 
     const fetchApi = useCallback(async () => {
         const response: ResponseProps = await callApi
@@ -57,24 +58,81 @@ function App() {
         }
     }, []);
 
+    const handleDelete = useCallback(async (id: number) => {
+        try {
+            if (confirm('Do you really want to delete this user?')) {
+                const response: ResponseProps = await callApi
+                    .delete('/users/', {
+                        data: { id },
+                    })
+                    .then((res) => {
+                        return res.data;
+                    });
+
+                if (response.bizResult === '0') {
+                    alert('Delete successfully');
+                } else {
+                    alert('Delete fail');
+                }
+            }
+        } catch (error) {
+            console.log({ error });
+        }
+    }, []);
+
+    const handleDetail = useCallback((value: UserProps) => {
+        try {
+            setUserDetail(value);
+        } catch (error) {
+            console.log({ error });
+        }
+    }, []);
+
+    console.log(userDetail);
+
     return (
-        <>
-            {users.map((value: UserProps, index: number) => {
-                return (
-                    <div key={index}>
-                        <ul>
-                            <li>{value.id}</li>
-                            <li>{value.email}</li>
-                            <li>{value.name}</li>
-                            <li>{value.phone}</li>
-                            <li>{value.address}</li>
-                            <li>{value.created_at}</li>
-                            <li>{value.updated_at}</li>
-                        </ul>
-                    </div>
-                );
-            })}
-        </>
+        <div className="container">
+            <div className="header">LIST OF USERS</div>
+            <table id="customers">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Email</th>
+                        <th>Display name</th>
+                        <th>Phone</th>
+                        <th>Address</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {users.map((value: UserProps, index: number) => {
+                        return (
+                            <tr key={index}>
+                                <td className="txt-center">{index + 1}</td>
+                                <td>{value.email}</td>
+                                <td>{value.name}</td>
+                                <td>{value.phone}</td>
+                                <td>{value.address}</td>
+                                <td className="td-button">
+                                    <button
+                                        className="btn-detail"
+                                        onClick={() => handleDetail(value)}
+                                    >
+                                        Detail
+                                    </button>
+                                    <button
+                                        className="btn-delete"
+                                        onClick={() => handleDelete(value.id)}
+                                    >
+                                        Delete
+                                    </button>
+                                </td>
+                            </tr>
+                        );
+                    })}
+                </tbody>
+            </table>
+        </div>
     );
 }
 
