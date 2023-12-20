@@ -19,7 +19,7 @@
 #customers td,
 #customers th {
     border: 1px solid #ddd;
-    padding: 8px;
+    padding: 8px 15px;
 }
 
 #customers tr:nth-child(even) {
@@ -29,13 +29,9 @@
 #customers th {
     padding-top: 12px;
     padding-bottom: 12px;
-    text-align: center;
+    text-align: left;
     background-color: #04aa6d;
     color: white;
-}
-
-#customers .td-button {
-    width: 18%;
 }
 
 #customers button {
@@ -64,4 +60,23 @@
 
 .container .txt-center {
     text-align: center;
+}
+
+#customers .td-no {
+    width: 5%;
+}
+#customers .td-email {
+    width: 20%;
+}
+#customers .td-name {
+    width: 15%;
+}
+#customers .td-phone {
+    width: 10%;
+}
+#customers .td-address {
+    width: 32%;
+}
+#customers .td-button {
+    width: 18%;
 }

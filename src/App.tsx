@@ -88,7 +88,7 @@ function App() {
         }
     }, []);
 
-    console.log(userDetail);
+    console.log({ userDetail });
 
     return (
         <div className="container">
@@ -108,11 +108,11 @@ function App() {
                     {users.map((value: UserProps, index: number) => {
                         return (
                             <tr key={index}>
-                                <td className="txt-center">{index + 1}</td>
-                                <td>{value.email}</td>
-                                <td>{value.name}</td>
-                                <td>{value.phone}</td>
-                                <td>{value.address}</td>
+                                <td className="td-no">{index + 1}</td>
+                                <td className="td-email">{value.email}</td>
+                                <td className="td-name">{value.name}</td>
+                                <td className="td-phone">{value.phone}</td>
+                                <td className="td-address">{value.address}</td>
                                 <td className="td-button">
                                     <button
                                         className="btn-detail"
